@@ -6,7 +6,6 @@ import { Inspector } from 'react-inspector';
 import { withVisibility, A } from 'frog-utils';
 
 import StudentList from './StudentList';
-import ActivityList from './ActivityList';
 import ButtonList from './ButtonList';
 import SessionList from './SessionList';
 import GraphView from './GraphView';
@@ -31,7 +30,6 @@ const rawSessionController = ({
           {visible
             ? <DashView session={session} />
             : <GraphView session={session} />}
-          <ActivityList activities={activities} />
         </div>
       : <p>Create or select a session from the list below</p>}
   </div>;
