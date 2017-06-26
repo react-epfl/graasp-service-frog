@@ -13,12 +13,12 @@ export const nextActivity = (sessionId: string) =>
   Meteor.call('next.activity', sessionId);
 
 Meteor.methods({
-  'run.session': (sessionId: string) => {
+  'run.session': sessionId => {
     updateSessionState(sessionId, 'STARTED');
     Sessions.update(sessionId, { $set: { startedAt: Date.now() } });
     engineLogger(sessionId, { message: 'STARTING SESSION' });
   },
-  'next.activity': (sessionId: string) => {
+  'next.activity': sessionId => {
     const session = Sessions.findOne(sessionId);
     const activities = Activities.find({ graphId: session.graphId }).fetch();
     const [t0, t1] = [
