@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { ProgressBar } from 'react-bootstrap';
 import { colorRange as color } from 'frog-utils';
+import { uniqBy, sortBy, reverse } from 'lodash';
 
 const VideoProgress = ({ data }) => {
   let backgroundColor;
@@ -57,7 +58,10 @@ class Dash extends Component {
   render() {
     return (
       <div>
-        {this.props.logs.map(x => <VideoProgress data={x} key={x._id} />)}
+        {uniqBy(
+          reverse(sortBy(this.props.logs, x => x.updatedAt)),
+          x => x.user
+        ).map(x => <VideoProgress data={x} key={x._id} />)}
       </div>
     );
   }

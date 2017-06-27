@@ -27,11 +27,7 @@ export const engineLogger = (sessionId, params) =>
 export const createLogger = merge => {
   const username = Meteor.users.findOne(Meteor.userId()).username;
   const logger = x => {
-    Logs.update(
-      Stringify(merge),
-      { $set: { ...merge, ...x, username, updatedAt: Date() } },
-      { upsert: true }
-    );
+    Logs.insert({ ...merge, ...x, username, updatedAt: Date() });
   };
   return logger;
 };
