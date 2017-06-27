@@ -1,7 +1,2 @@
-*.DS_Store
-node_modules/
-*.log
-.tern-port
-/tmp/
-**/.babelrc
-**/npm-debug.log*
+node_modules
+dist

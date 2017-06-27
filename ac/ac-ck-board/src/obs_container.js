@@ -18,7 +18,7 @@ export default ({ setXY, openInfoFn, observation }) => {
       <div
         style={{
           position: 'absolute',
-          fontSize: '10px',
+          fontSize: '12px',
           textOverflow: 'ellipsis',
           overflow: 'hidden',
           top: observation.y,
@@ -27,14 +27,14 @@ export default ({ setXY, openInfoFn, observation }) => {
       >
         <Paper zDepth={3} style={style}>
           <div>
-            {shorten(observation.title, 20)}
+            {shorten(observation.title, 40)}
             <span style={{ float: 'right' }} className="noDrag">
               <AspectRatio onClick={openInfoFn} />
             </span>
           </div>
           <div
             style={{
-              fontSize: '8px',
+              fontSize: '10px',
               float: 'left',
               marginTop: '5px',
               marginLeft: '2px'

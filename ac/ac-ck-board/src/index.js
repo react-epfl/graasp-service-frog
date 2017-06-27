@@ -57,6 +57,7 @@ const config = {
 const dataStructure = [];
 
 const mergeFunction = (object, dataFn) => {
+  console.log('object', object);
   [...(object.config.boxes || []), ...object.data].forEach(box => {
     if (!box.id) {
       box.id = uuid();

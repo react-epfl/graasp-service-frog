@@ -54,6 +54,7 @@ export type ActivityPackageT = {
   id: string,
   meta: { type: string, name: string },
   config: Object,
+  dataStructure?: Object,
   mergeFunction?: (dataUnitStructT, Object) => void,
   ActivityRunner: (x: ActivityRunnerT) => React$Component<*> | React$Element<*>
 };

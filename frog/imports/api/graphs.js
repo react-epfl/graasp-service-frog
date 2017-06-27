@@ -71,8 +71,7 @@ Meteor.methods({
       if (Meteor.isServer) {
         Activities.update(
           { graphId, plane: 2, groupingKey: { $exists: false } },
-          { $set: { groupingKey: 'group' } },
-          { upsert: true }
+          { $set: { groupingKey: 'group' } }
         );
       }
 

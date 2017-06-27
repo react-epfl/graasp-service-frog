@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "ac-brainstorm": "*",
+    "op-select-best": "*",
     "op-distribute": "*",
     "op-create-groups": "*",
     "op-hypothesis": "*",
