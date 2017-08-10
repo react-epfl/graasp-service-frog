@@ -1,4 +1,4 @@
 {
-   "plugins": ["syntax-decorators", "transform-decorators-legacy", "transform-class-properties","transform-flow-strip-types"],
+   "plugins": ["meteor-imports", "syntax-decorators", "transform-decorators-legacy", "transform-class-properties","transform-flow-strip-types", "transform-runtime"],
    "presets": [ "react", "stage-0", "es2015"]
  }

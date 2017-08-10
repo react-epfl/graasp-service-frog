@@ -1,19 +1,13 @@
 import React from 'react';
-import { createStore } from 'redux';
-import makeReducer from '../universal/redux/makeReducer';
-import { match } from 'react-router';
 import Html from './Html';
-import { push } from 'react-router-redux';
 import { renderToStaticMarkup } from 'react-dom-stream/server';
 import fs from 'fs';
 import path from 'path';
 import { join } from 'path';
 import promisify from 'es6-promisify';
-import { Map as iMap } from 'immutable';
 import { Meteor } from 'meteor/meteor';
 import url from 'url';
 import type { IncomingMessage, ServerResponse } from 'http';
-import type { Store } from '../universal/flowtypes/redux';
 
 const __meteor_runtime_config__ = {
   PUBLIC_SETTINGS: Meteor.settings.public || {},
@@ -27,21 +21,14 @@ const __meteor_runtime_config__ = {
   meteorRelease: Meteor.release
 };
 
-function renderApp(
-  res: ServerResponse,
-  store: Store,
-  assets?: Object,
-  renderProps?: Object
-) {
+function renderApp(res: ServerResponse, assets?: Object, renderProps?: Object) {
   const location =
     (renderProps && renderProps.location && renderProps.location.pathname) ||
     '/';
   // Needed so some components can render based on location
-  store.dispatch(push(location));
   const htmlStream = renderToStaticMarkup(
     <Html
       title="Crater"
-      store={store}
       assets={assets}
       __meteor_runtime_config__={__meteor_runtime_config__}
       renderProps={renderProps}
@@ -57,7 +44,6 @@ async function createSSR(
   res: ServerResponse
 ): Promise<void> {
   try {
-    const store = createStore(makeReducer(), iMap());
     if (process.env.NODE_ENV === 'production') {
       const readFile = promisify(fs.readFile);
       const assets = JSON.parse(
@@ -68,32 +54,13 @@ async function createSSR(
         'utf-8'
       );
       if (process.env.DISABLE_FULL_SSR) {
-        return renderApp(res, store, assets);
+        return renderApp(res, assets);
       }
-      const makeRoutes = require('../universal/routes').default;
-      const routes = makeRoutes(store);
-      match(
-        { routes, location: req.url },
-        (
-          error: ?Error,
-          redirectLocation: { pathname: string, search: string },
-          renderProps: ?Object
-        ) => {
-          if (error) {
-            res.status(500).send(error.message);
-          } else if (redirectLocation) {
-            res.redirect(redirectLocation.pathname + redirectLocation.search);
-          } else if (renderProps) {
-            renderApp(res, store, assets, renderProps);
-          } else {
-            res.status(404).send('Not found');
-          }
-        }
-      );
-    } else {
       // just send a cheap html doc + stringified store
-      renderApp(res, store);
+      renderApp(res);
     }
+    console.log('rendering app');
+    renderApp(res);
   } catch (error) {
     console.error(error.stack); // eslint-disable-line no-console
   }

@@ -9,8 +9,6 @@ import buildDir from '../../buildDir';
 
 const shutdownDebug = createDebug('crater:shutdown');
 
-import '../universal/collections/Counts';
-
 const app = express();
 
 app.use((req: Object, res: Object, next: Function) => {
@@ -42,12 +40,14 @@ if (process.env.NODE_ENV === 'production') {
 
 // server-side rendering
 app.get('*', (req: Object, res: Object, next: Function) => {
+  console.log('get request', req);
   // let Meteor handle sockjs requests so that DDP works
   // and OAuth requests as well
   if (/^\/(sockjs|_?oauth)/.test(req.path)) {
     next();
     return;
   }
+
   createSSR(req, res);
 });
 
