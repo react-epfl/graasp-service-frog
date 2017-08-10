@@ -23,15 +23,10 @@ const meteorConfig = {
 
 const config = {
   context: root,
-  devtool: 'eval',
   resolve: {
     extensions: ['.js', '.jsx', '.json']
   },
-  entry: [
-    './src/client/index.js',
-    'react-hot-loader/patch',
-    'webpack-hot-middleware/client'
-  ],
+  entry: ['./src/client/index.js'],
   output: {
     // https://github.com/webpack/webpack/issues/1752
     filename: 'app.js',
@@ -41,7 +36,6 @@ const config = {
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       __CLIENT__: true,
@@ -57,18 +51,7 @@ const config = {
         {
           path: 'babel-loader',
           options: {
-            presets: [
-              ['es2015', { loose: true, modules: false }],
-              'stage-1',
-              'react',
-              'flow'
-            ],
-            plugins: ['transform-runtime', 'react-hot-loader/babel'],
-            env: {
-              coverage: {
-                plugins: ['istanbul']
-              }
-            }
+            babelrc: true
           }
         }
       ],

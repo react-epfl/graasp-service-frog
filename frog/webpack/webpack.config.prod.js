@@ -63,12 +63,12 @@ const config = {
     }),
     new webpack.IgnorePlugin(/\/server\//),
     new HappyPack({
-      cache: false,
       loaders: [
         {
           test: /\.jsx?$/,
           path: 'babel-loader',
           options: {
+            presets: ['env'],
             babelrc: true
           }
         }
@@ -132,6 +132,7 @@ if (!process.env.CI) config.plugins.push(new ProgressBarPlugin());
 if (process.argv.indexOf('--no-uglify') < 0) {
   config.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
+      compress: false,
       compressor: { warnings: false }
     })
   );

@@ -15,6 +15,9 @@ const globalCSS = path.join(srcDir, 'styles', 'global');
 const config = {
   context: root,
   devtool: 'source-map',
+  resolve: {
+    extensions: ['.js', '.jsx', '.json']
+  },
   entry: {
     prerender: './src/server'
   },
@@ -63,23 +66,11 @@ const config = {
       loaders: [
         {
           path: 'babel-loader',
-          options: {
-            presets: [
-              ['es2015', { loose: true, modules: false }],
-              'stage-1',
-              'react',
-              'flow'
-            ],
-            plugins: ['transform-runtime', 'meteor-imports'],
-            env: {
-              coverage: {
-                plugins: ['istanbul']
-              }
-            }
-          }
+          test: /\.jsx?$/,
+          babelrc: true
         }
       ],
-      threads: 4
+      threads: 8
     })
   ],
   module: {
@@ -119,7 +110,7 @@ const config = {
         include: globalCSS
       },
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loader: 'happypack/loader',
         include: srcDir
       }
@@ -132,6 +123,7 @@ if (!process.env.CI) config.plugins.push(new ProgressBarPlugin());
 if (process.argv.indexOf('--no-uglify') < 0) {
   config.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
+      compress: false,
       compressor: { warnings: false }
     })
   );

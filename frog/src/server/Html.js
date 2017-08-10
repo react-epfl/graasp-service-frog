@@ -37,13 +37,20 @@ export default class Html extends Component {
           </title>
         </head>
         <body>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.__meteor_runtime_config__ = ${JSON.stringify(
+                __meteor_runtime_config__
+              )}`
+            }}
+          />
+          <div id="render-target" />
           {PROD &&
             <script dangerouslySetInnerHTML={{ __html: manifest.text }} />}
           {PROD && <script src={vendor.js} />}
           {PROD && <script src={meteor.js} />}
           <script src={PROD ? app.js : '/static/app.js'} />
           {process.env.DISABLE_FULL_SSR && <span id="full-ssr-disabled" />}
-          <div id="render-target" />
         </body>
       </html>
     );

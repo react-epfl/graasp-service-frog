@@ -59,7 +59,6 @@ async function createSSR(
       // just send a cheap html doc + stringified store
       renderApp(res);
     }
-    console.log('rendering app');
     renderApp(res);
   } catch (error) {
     console.error(error.stack); // eslint-disable-line no-console

@@ -40,7 +40,6 @@ if (process.env.NODE_ENV === 'production') {
 
 // server-side rendering
 app.get('*', (req: Object, res: Object, next: Function) => {
-  console.log('get request', req);
   // let Meteor handle sockjs requests so that DDP works
   // and OAuth requests as well
   if (/^\/(sockjs|_?oauth)/.test(req.path)) {
