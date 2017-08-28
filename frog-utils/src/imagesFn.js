@@ -5,7 +5,7 @@
 // or = 1 if size didn't have 2 dimensions
 // and a urlResult variable that contains the dataURL of the image resized
 
-export default (url: string, size: Array<number>) => {
+export const resizeDataURL = (url: string, size: Array<number>) => {
   let err = 0;
   let urlResult = url;
   if (size.length !== 2) err = 1;
@@ -21,4 +21,22 @@ export default (url: string, size: Array<number>) => {
   }
 
   return { urlResult, err };
+};
+
+export const thumbnailFromURL = (url: string, size: Array<number>) => {
+  if (size.length >= 2) {
+    console.log('in the func');
+    const img = new Image();
+    img.src = url;
+    console.log(url.length);
+    let urlResult = null;
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, size[0], size[1]);
+      urlResult = canvas.toDataURL('image/webp');
+      console.log(urlResult.length);
+    };
+  }
+  return urlResult;
 };

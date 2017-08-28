@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Webcam from 'react-webcam';
 import Mousetrap from 'mousetrap';
 
-import { dataURItoFile, uuid } from 'frog-utils';
+import { dataURItoFile, thumbnailFromURL, uuid } from 'frog-utils';
 
 const WebcamCapture = ({ setWebcam, uploadFn, data, dataFn }: Object) => {
   let webcam = { getScreenshot: () => null };
@@ -23,12 +23,27 @@ const WebcamCapture = ({ setWebcam, uploadFn, data, dataFn }: Object) => {
           const dataURL = webcam.getScreenshot();
           const file = dataURItoFile(dataURL, uuid(), window);
           uploadFn(file, url => {
-            // setTimeout, otherwise HTTP request sends back code 503
-            setTimeout(
-              () =>
-                dataFn.objInsert({ url, votes: {} }, Object.keys(data).length),
-              1000
-            );
+            const img = new Image();
+            img.src = dataURL;
+            console.log(dataURL.length);
+            img.onload = () => {
+              const canvas = document.createElement('canvas');
+              const ctx = canvas.getContext('2d');
+              ctx.drawImage(img, 0, 0, 100, 100);
+              const tmp = ctx.getImage;
+              const urlThumb = canvas.toDataURL('image/webp');
+              console.log(urlThumb.length);
+              const fileThumb = dataURItoFile(urlThumb, uuid(), window);
+              uploadFn(fileThumb, url2 => {
+                // setTimeout, otherwise HTTP request sends back code 503
+                setTimeout(() => {
+                  dataFn.objInsert(
+                    { url, urlThumbnail: url2, votes: {} },
+                    uuid()
+                  );
+                }, 1000);
+              });
+            };
           });
           setWebcam(false);
         }}

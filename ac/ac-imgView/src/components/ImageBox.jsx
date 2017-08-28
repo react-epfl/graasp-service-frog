@@ -43,8 +43,7 @@ const ImageBox = ({
   styleCode: string
 }) =>
   <ImgButton onClick={onClick} style={getStyle(styleCode)}>
-    <CenteredImg url={image.url} />
+    <CenteredImg url={image.urlThumbnail ? image.urlThumbnail : image.url} />
   </ImgButton>;
-
 ImageBox.displayName = 'ImageBox';
 export default ImageBox;

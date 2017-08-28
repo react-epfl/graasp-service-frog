@@ -34,7 +34,6 @@ const ActivityPanel = ({
   webcam,
   setWebcam
 }) => {
-
   const categories = Object.keys(data).reduce(
     (acc, key) => ({
       ...acc,
@@ -66,7 +65,6 @@ const ActivityPanel = ({
     const prev = data[key].votes ? data[key].votes[userId] : false;
     dataFn.objInsert(!prev, [key, 'votes', userId]);
   };
-
   return (
     <Main>
       <TopBar
@@ -107,7 +105,6 @@ const ActivityPanel = ({
     </Main>
   );
 };
-
 
 const ActivityRunner = compose(
   withState('zoomOpen', 'setZoom', false),

@@ -31,7 +31,7 @@ const ImageListPure = ({
   Mousetrap.bind('esc', () => setZoom(false));
   Mousetrap.bind('shift', () => setVoteMode(true), 'keydown');
   Mousetrap.bind('shift', () => setVoteMode(false), 'keyup');
-
+  console.log(images);
   return (
     <Main>
       {images.map((image, i) => {
