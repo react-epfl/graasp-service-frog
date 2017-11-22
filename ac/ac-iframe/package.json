@@ -15,8 +15,6 @@
     "react-iframe": "^1.0.7"
   },
   "devDependencies": {
-    "babel-cli": "*",
-    "watch": "*",
     "nps": "*"
   }
 }

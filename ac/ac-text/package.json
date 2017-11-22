@@ -14,8 +14,6 @@
     "react-dom": "^16.0.0"
   },
   "devDependencies": {
-    "babel-cli": "*",
-    "watch": "*",
     "nps": "*"
   }
 }

@@ -22,8 +22,6 @@
     "sharedb-string-binding": "^1.0.0"
   },
   "devDependencies": {
-    "babel-cli": "*",
-    "watch": "*",
     "nps": "*"
   }
 }

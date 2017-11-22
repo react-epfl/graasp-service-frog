@@ -15,8 +15,6 @@
     "strict-uri-encode": "^2.0.0"
   },
   "devDependencies": {
-    "babel-cli": "*",
-    "watch": "*",
     "nps": "*"
   }
 }

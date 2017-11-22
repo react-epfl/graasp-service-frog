@@ -16,8 +16,6 @@
     "react-player": "^0.25.3"
   },
   "devDependencies": {
-    "babel-cli": "*",
-    "watch": "*",
     "nps": "*"
   }
 }

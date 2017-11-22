@@ -14,8 +14,6 @@
     "styled-components": "^2.2.3"
   },
   "devDependencies": {
-    "babel-cli": "*",
-    "watch": "*",
     "nps": "*"
   }
 }
