@@ -6,6 +6,7 @@
     "test": "meteor test --once --full-app --driver-package dispatch:mocha-phantomjs",
     "start": "nps"
   },
+  "workspaces": { "nohoist": ["*"] },
   "dependencies": {
     "ac-autocode": "1.0.0",
     "ac-brainstorm": "1.0.0",
@@ -85,7 +86,9 @@
     "websocket-json-stream": "0.0.3",
     "ws": "^3.2.0",
     "op-check-concepts": "1.0.0",
-    "ac-textarea": "1.0.0",
+    "ac-textarea": "1.0.0"
+  },
+  "devDependencies": {
     "nps": "^5.7.1"
   }
 }

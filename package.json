@@ -6,12 +6,14 @@
     "start": "nps",
     "test": "nps test"
   },
-  "workspaces": [
-    "ac/*",
-    "op/*",
-    "frog-utils",
-    "frog"
-  ],
+  "workspaces": { 
+    "packages": [
+      "ac/*",
+      "op/*",
+      "frog-utils",
+      "frog"
+    ]
+  },
   "devDependencies": {
     "babel-cli": "7.0.0-beta.3",
     "babel-eslint": "^8.0.1",
