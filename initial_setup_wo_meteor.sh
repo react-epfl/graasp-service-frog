@@ -3,7 +3,7 @@
 shopt -s dotglob
 
 FROG="`pwd`"
-YARN_VERSION='1.3.2'
+YARN_VERSION='1.3.2-yarn'
 if which yarn && [[ `yarn --version` == $YARN_VERSION ]]; then 
     echo 'Using pre-installed global Yarn'; YARN=yarn 
 else
@@ -30,7 +30,6 @@ do
 done
 
 cd "$FROG/frog"
-ln -s "$FROG"/node_modules/* node_modules/ 2>/dev/null
 ln -s "$FROG/.babelrc" . 2>/dev/null
 wait
 exit 0
