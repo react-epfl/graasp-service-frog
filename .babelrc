@@ -1,4 +1,4 @@
 {
    "plugins": ["syntax-flow", "transform-flow-comments", "transform-decorators-legacy", "transform-class-properties", "captains-log"],
-   "presets": ["react", ["env", { "loose": true }], "stage-0"]
+   "presets": ["react", "env", "stage-0"]
  }
