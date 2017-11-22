@@ -20,10 +20,13 @@ ${watch}
 
 const fromRoot = cmd =>
   `cd ${dir}/../ && PATH=${dir}/../node_modules/.bin:$PATH} ${cmd}`;
+const rootPath = cmd => `PATH=${dir}/../node_modules/.bin:$PATH} ${cmd}`;
 
 module.exports = {
   scripts: {
-    build,
+    build: rootPath(build),
+    babelV: rootPath('babel --version'),
+    babelVV: fromRoot('babel --version'),
     eslintTest: fromRoot('eslint -c .eslintrc-prettier.js --ext .js,.jsx .'),
     fix: fromRoot('eslint --fix -c .eslintrc-prettier.js --ext .js,.jsx .'),
     flowTest: fromRoot('flow'),
