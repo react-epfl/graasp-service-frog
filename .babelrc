@@ -1,4 +1,4 @@
 {
-   "plugins": ["syntax-decorators", "transform-decorators-legacy", "transform-class-properties","transform-flow-comments", "captains-log"],
+   "plugins": ["syntax-flow", "transform-flow-comments","syntax-decorators", "transform-decorators-legacy", "transform-class-properties", "captains-log"],
    "presets": [ "react", "stage-0", "es2015"]
  }
