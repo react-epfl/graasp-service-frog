@@ -13,7 +13,6 @@
     "lodash": "^4.6.0"
   },
   "devDependencies": {
-  "devDependencies": {
     "babel-cli": "*",
     "watch": "*",
     "nps": "*"
